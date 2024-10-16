@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -64,6 +65,11 @@ public class ControladorProducto extends HttpServlet {
 		tblProducto.setFechaven(fechasql);
 		
 		tblproimp.RegistrarProducto(tblProducto);
+		
+		//recuperamos el listado
+		List<TblProducto> listado=tblproimp.ListarProducto();
+		//enviamos a la vista
+		request.setAttribute("listado", listado);
 		
 		request.getRequestDispatcher("/MenuPrincipal.jsp").forward(request, response);
 		
